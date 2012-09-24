@@ -83,8 +83,8 @@ char    *gnu_optarg;		/* argument associated with option */
 #define gnu_optreset optreset
 #define gnu_optarg optarg
 int optreset;
-
 #endif
+char* argv0 = NULL;
 
 #define PRINT_ERROR	((gnu_opterr) && (*options != ':'))
 
@@ -381,6 +381,8 @@ getopt_internal(int nargc, char * const *nargv, const char *options,
 	char *oli;				/* option letter list index */
 	int optchar, short_too;
 	int posixly_correct;	/* no static, can be changed on the fly */
+	
+	if(!argv0) argv0 = nargv[0];
 
 	if (options == NULL)
 		return (-1);
@@ -539,14 +541,14 @@ start:
 			++gnu_optind;
 #ifdef GNU_COMPATIBLE
 		if (PRINT_ERROR) {
-			fprintf(stderr, "pkgconf: ");
+			fprintf(stderr, "%s: ", argv0);
 			fprintf(stderr, posixly_correct ? illoptchar : gnuoptchar,
 					optchar);
 			fprintf(stderr, "\n");
 		}
 #else
 		if (PRINT_ERROR) {
-			fprintf(stderr, "pkgconf: ");
+			fprintf(stderr, "%s: ", argv0);
 			fprintf(stderr, illoptchar, optchar);
 			fprintf(stderr, "\n");
 		}
@@ -561,7 +563,7 @@ start:
 		else if (++gnu_optind >= nargc) {	/* no arg */
 			place = EMSG;
 			if (PRINT_ERROR) {
-				fprintf(stderr, "pkgconf: ");
+				fprintf(stderr, "%s: ", argv0);
 				fprintf(stderr, recargchar, optchar);
 				fprintf(stderr, "\n");
 			}
@@ -588,7 +590,7 @@ start:
 			if (++gnu_optind >= nargc) {	/* no arg */
 				place = EMSG;
 				if (PRINT_ERROR) {
-					fprintf(stderr, "pkgconf: ");
+					fprintf(stderr, "%s: ", argv0);
 					fprintf(stderr, recargchar, optchar);
 					fprintf(stderr, "\n");
 				}
