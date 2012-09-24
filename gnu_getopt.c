@@ -56,7 +56,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "getopt_long.h"
+#include "gnu_getopt.h"
 
 #include <errno.h>
 #include <stdio.h>
