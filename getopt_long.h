@@ -31,8 +31,8 @@
  */
 
 
-#ifndef _GETOPT_LONG_H_
-#define _GETOPT_LONG_H_
+#ifndef _GNU_GETOPT_LONG_H_
+#define _GNU_GETOPT_LONG_H_
 
 /*
  * GNU-like getopt_long()/getopt_long_only() with 4.4BSD optreset extension.
@@ -42,7 +42,7 @@
 #define required_argument  1
 #define optional_argument  2
 
-struct pkg_option {
+struct gnu_option {
 	/* name of long option */
 	const char *name;
 	/*
@@ -56,14 +56,15 @@ struct pkg_option {
 	int val;
 };
 
-int	pkg_getopt_long(int, char * const *, const char *,
-	const struct pkg_option *, int *);
-int	pkg_getopt_long_only(int, char * const *, const char *,
-	const struct pkg_option *, int *);
-int	pkg_getopt(int, char * const [], const char *);
+int	gnu_getopt_long(int, char * const *, const char *,
+	const struct gnu_option *, int *);
+int	gnu_getopt_long_only(int, char * const *, const char *,
+	const struct gnu_option *, int *);
+int	gnu_getopt(int, char * const [], const char *);
 
-extern char *pkg_optarg;			/* getopt(3) external variables */
-extern int pkg_optind, pkg_opterr, pkg_optopt;
-extern int pkg_optreset;			/* getopt(3) external variable */
-
+#if 0
+extern char *gnu_optarg;			/* getopt(3) external variables */
+extern int gnu_optind, gnu_opterr, gnu_optopt;
+extern int gnu_optreset;			/* getopt(3) external variable */
+#endif
 #endif
