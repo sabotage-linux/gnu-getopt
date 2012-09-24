@@ -22,9 +22,9 @@ $(LIB): $(OBJ)
 $(OBJ): $(SRC)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(DESTDIR)$(libdir)/%: lib%
+$(DESTDIR)$(libdir)/%: $(LIB)
 	install -D -m 644 $< $@
 
-install-libs: $(LIB:lib%=$(DESTDIR)$(libdir)/%)
+install-libs: $(LIB:lib%=$(DESTDIR)$(libdir)/lib%)
 
 .PHONY: all clean install install-libs
