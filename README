@@ -4,6 +4,6 @@ usage:
 make; make prefix= DESTDIR= install
 
 then to compile a package, add to
-CFLAGS="-Dgetopt=gnu_getopt -Dgetopt_long=gnu_getopt_long -Dgetopt_long_only=-Dgnu_getopt_long_only"
+CFLAGS="-Dgetopt=gnu_getopt -Dgetopt_long=gnu_getopt_long -Dgetopt_long_only=gnu_getopt_long_only"
 LDFLAGS="-lgnu_getopt"
 
